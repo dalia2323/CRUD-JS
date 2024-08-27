@@ -24,6 +24,7 @@ input{
     padding: 4px;
     border-radius: 4px;
     background-color: #111;
+    color: #fff;
 }
 input:focus{
     background-color: #000;
