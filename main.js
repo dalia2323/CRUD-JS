@@ -38,7 +38,16 @@ submit.onclick=function(){
         count:count.value,
         category:category.value,
     }
-    dataPro.push(newPro);
+    // dataPro.push(newPro);
+    //create depend on count
+    if(newPro.count>1){
+        for(let i=0;i<newPro.count;i++){
+            dataPro.push(newPro);
+        }}
+        else{
+            dataPro.push(newPro);
+        }
+    
     //save in local storage 
     localStorage.setItem('product',JSON.stringify(dataPro));
     clearInput();
@@ -77,7 +86,7 @@ document.getElementById('tbody').innerHTML=table;
 let deleteALL=document.getElementById('deleteAll');
 if(dataPro.length>0){
     deleteALL.innerHTML=`
-    <button onclick="deleteAll()">Delete ALL</button>
+    <button onclick="deleteAll()">Delete ALL (${dataPro.length})</button>
     `;
 }else{
     deleteALL.innerHTML='';
