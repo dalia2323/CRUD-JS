@@ -73,6 +73,15 @@ for(let i=0;i<dataPro.length;i++){
                     </tr>`
 }
 document.getElementById('tbody').innerHTML=table;
+//delete all
+let deleteALL=document.getElementById('deleteAll');
+if(dataPro.length>0){
+    deleteALL.innerHTML=`
+    <button onclick="deleteAll()">Delete ALL</button>
+    `;
+}else{
+    deleteALL.innerHTML='';
+}
 }
 showData();
 //Delete
@@ -80,4 +89,10 @@ function deleteData(i){
     dataPro.splice(i,1);
     localStorage.product=JSON.stringify(dataPro);
     showData();
+}
+//Delete all
+function deleteAll(){
+localStorage.clear();
+dataPro.splice(0);
+showData();
 }
