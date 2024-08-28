@@ -19,3 +19,27 @@ else{
     total.style.background='#a00d';
 }
 }
+//create
+let dataPro; 
+if(localStorage.product!= null){
+    dataPro=JSON.parse(localStorage.product);
+}
+else{
+dataPro= [];
+}
+submit.onclick=function(){
+    let newPro={
+        title:title.value,
+        taxes:taxes.value,
+        ads:ads.value,
+        discount:discount.value,
+        total:total.innerHTML,
+        price:price.value,
+        count:count.value,
+        category:category.value,
+    }
+    dataPro.push(newPro);
+    //save in local storage 
+    localStorage.setItem('product',JSON.stringify(dataPro));
+    console.log(dataPro)
+}
