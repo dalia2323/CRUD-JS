@@ -69,9 +69,15 @@ for(let i=0;i<dataPro.length;i++){
                         <td>${dataPro[i].total}</td>
                         <td>${dataPro[i].category}</td>
                         <td><button id="update">Update</button></td>  
-                    <td><button id="delete">Delete</button> </td>
+                    <td><button id="delete" onclick="deleteData(${i})">Delete</button> </td>
                     </tr>`
 }
 document.getElementById('tbody').innerHTML=table;
 }
 showData();
+//Delete
+function deleteData(i){
+    dataPro.splice(i,1);
+    localStorage.product=JSON.stringify(dataPro);
+    showData();
+}
