@@ -7,6 +7,8 @@ let total=document.getElementById('total');
 let count=document.getElementById('count');
 let category=document.getElementById('category');
 let submit=document.getElementById('submit');
+let tmp;
+let mood='create';
 //get total
 function getTotal(){
 if(price.value !=''){
@@ -39,7 +41,8 @@ submit.onclick=function(){
         category:category.value,
     }
     // dataPro.push(newPro);
-    //create depend on count
+    if(mood==='create'){
+        //create depend on count
     if(newPro.count>1){
         for(let i=0;i<newPro.count;i++){
             dataPro.push(newPro);
@@ -47,6 +50,13 @@ submit.onclick=function(){
         else{
             dataPro.push(newPro);
         }
+    }else{
+        dataPro[tmp]=newPro;
+        mood='create';
+        submit.innerHTML='Create';
+        count.style.display='block';
+    }
+
     
     //save in local storage 
     localStorage.setItem('product',JSON.stringify(dataPro));
@@ -77,7 +87,7 @@ for(let i=0;i<dataPro.length;i++){
                         <td>${dataPro[i].discount}</td>
                         <td>${dataPro[i].total}</td>
                         <td>${dataPro[i].category}</td>
-                        <td><button id="update">Update</button></td>  
+                        <td><button id="update" onclick="updateData(${i})">Update</button></td>  
                     <td><button id="delete" onclick="deleteData(${i})">Delete</button> </td>
                     </tr>`
 }
@@ -104,4 +114,22 @@ function deleteAll(){
 localStorage.clear();
 dataPro.splice(0);
 showData();
+}
+//update Data
+function updateData(i){
+title.value=dataPro[i].title;
+price.value=dataPro[i].price;
+taxes.value=dataPro[i].taxes;
+ads.value=dataPro[i].ads;
+getTotal();
+count.style.display='none';
+discount.value=dataPro[i].discount;
+category.value=dataPro[i].category;
+submit.innerHTML='Update';
+tmp=i;
+mood='update';
+scroll({
+    top:0,
+    behavior:'smooth',
+})
 }
