@@ -41,6 +41,11 @@ submit.onclick=function(){
         category:category.value,
     }
     // dataPro.push(newPro);
+    if(title.value!=''
+        && price.value!=''
+        &&category.value!=''
+        &&count.value<100
+    ){
     if(mood==='create'){
         //create depend on count
     if(newPro.count>1){
@@ -56,11 +61,11 @@ submit.onclick=function(){
         submit.innerHTML='Create';
         count.style.display='block';
     }
-
+    clearInput();
+    }
     
     //save in local storage 
     localStorage.setItem('product',JSON.stringify(dataPro));
-    clearInput();
     showData();
 }
 //clear input
@@ -80,7 +85,7 @@ getTotal();
 let table='';   
 for(let i=0;i<dataPro.length;i++){
     table+=`   <tr>
-                        <td>${i}</td>
+                        <td>${i+1}</td>
                         <td>${dataPro[i].title}</td>
                         <td>${dataPro[i].price}</td>
                         <td>${dataPro[i].taxes}</td>
@@ -155,7 +160,7 @@ function searchData(value){
 if(searchMood=='title'){
     if(dataPro[i].title.toLowerCase().includes(value.toLowerCase())){
         table+=`   <tr>
-        <td>${i}</td>
+        <td>${i+1}</td>
         <td>${dataPro[i].title}</td>
         <td>${dataPro[i].price}</td>
         <td>${dataPro[i].taxes}</td>
@@ -172,7 +177,7 @@ if(searchMood=='title'){
 {
         if(dataPro[i].title.toLowerCase().includes(value.toLowerCase())){
             table+=`   <tr>
-            <td>${i}</td>
+            <td>${i+1}</td>
             <td>${dataPro[i].title}</td>
             <td>${dataPro[i].price}</td>
             <td>${dataPro[i].taxes}</td>
